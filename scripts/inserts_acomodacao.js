@@ -85,7 +85,7 @@ db.acomodacao.insertMany([
     },
     {
         _id: ObjectId("60aed62f0213426e9eff3a71"),
-        nome: "Hostel Cósmica",
+        nome: "Hotel Cósmica",
         descricao: "Quarto com ar condicionado,cama casal",
         diaria: 182.86,
         status: "D",
