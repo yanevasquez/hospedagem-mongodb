@@ -30,6 +30,7 @@ db.reserva.find({ "entrada": { $gte: ISODate("2021-06-01T00:00:00.000+0000"), $l
 // Enunciado:
 
 /* 01 consulta com filtro, projeção e uso de expressão regular */
+// Acha os hoteis exigindo apenas nome descrição e preço da diária
 db.acomodacao.find({
     nome:
      {
