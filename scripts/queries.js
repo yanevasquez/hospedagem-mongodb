@@ -27,8 +27,7 @@ db.acomodacao.count({})
 
 // Enunciado:
 
-/* 01 consulta com filtro, projeção e uso de expressão regular 
-Enunciado: */
+/* 01 consulta com filtro, projeção e uso de expressão regular */
 db.acomodacao.find({
     nome:
      {
