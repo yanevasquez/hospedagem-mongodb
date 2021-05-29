@@ -29,8 +29,19 @@ db.reserva.find({ "entrada": { $gte: ISODate("2021-06-01T00:00:00.000+0000"), $l
 
 // Enunciado:
 
-/* 01 consulta com filtro, projeção e uso de expressão regular 
-Enunciado: */
+/* 01 consulta com filtro, projeção e uso de expressão regular */
+db.acomodacao.find({
+    nome:
+     {
+      $regex: /Hotel/
+     }
+     },
+     {
+         _id:0,
+         nome:1,
+         descricao:1,
+         diaria:1
+     })
 
 /* 02 consultas com acesso a array de elementos */
 
