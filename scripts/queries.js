@@ -49,8 +49,40 @@ Enunciado: */
 // Enunciado:
 
 /* 01 consulta com lookup 
-Enunciado:
-*/
+
+Enunciado: Exibir os dados da reserva exceto o id, e omitir profissão e telefone do usuário,
+incluir todas as informações da acomodações que possuem diárias com precos menores ou igual a 100,00 e que 
+estão na paraíba */ 
+db.reserva.aggregate([
+    {
+        $lookup:
+        {
+            from: "acomodacao",
+            localField: "acomodacao",
+            foreignField: "_id",
+            as: "Dados_das_acomodacoes"
+        }
+    }, {
+        $match: {
+            "Dados_das_acomodacoes.endereco.estado": "PB"
+        }
+    },
+    {
+        $match: {
+            "Dados_das_acomodacoes.diaria": { $lte: 100.00 }
+        }
+    },
+    {
+        $project:
+        {
+            _id: 0,
+            usuario: {
+                profissao: 0,
+                telefone: 0,
+            },
+        }
+    },
+])
 
 /* 01 outra consulta a seu critério, dentro do contexto da aplicação 
 Enunciado: 
