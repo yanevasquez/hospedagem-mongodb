@@ -11,15 +11,17 @@
 Enunciado: Consulta para retornar todas as informações da coleção reserva */
 db.reserva.find({})
 
-/* 01 com contagem de documentos na coleção*/
+/* 01 com contagem de documentos na coleção
+
+Enunciado: Quantidade de acomodações cadastradas*/
 db.acomodacao.count({})
 
 /* 02 consultas com filtros diversos (IN, GT, etc), sem projeção */
 
 // Enunciado:
 
-// Enunciado:
-
+// Enunciado: Exibir todas as informações das reservas feitas no mês de junho
+db.reserva.find({ "entrada": { $gte: ISODate("2021-06-01T00:00:00.000+0000"), $lt: ISODate("2021-06-31T00:00:00.000+0000") } })
 
 /* 02 consultas com filtros diversos e com projeção */
 
@@ -32,7 +34,20 @@ Enunciado: */
 
 /* 02 consultas com acesso a array de elementos */
 
-// Enunciado:
+// Enunciado: Exibir os nomes, datas da reserva e preco de todos os hospedes que for escritor(a)
+db.reserva.aggregate([
+    { $unwind: "$usuario" },
+    {
+        $match:
+        {
+            "usuario.profissao": "Escritor(a)"
+        }
+    },
+    {
+        $project: { "_id": 0, "usuario.nome": 1, "preco": 1, "entrada": 1, "saida": 1 }
+    }
+]);
+
 
 // Enunciado:
 
@@ -44,15 +59,25 @@ Enunciado: */
 
 /* 02 consultas diferentes com aggregate */
 
-// Enunciado:
+// Enunciado: Exibir a média dos preços das diárias agrupadas por estado
+db.acomodacao.aggregate(
+    [
+        {
+            $group: {
+                _id: "$endereco.estado",
+                MediaDiariaPorEstado: { $avg: "$diaria" }
+            }
+        }
+    ]
+);
 
 // Enunciado:
 
 /* 01 consulta com lookup 
 
 Enunciado: Exibir os dados da reserva exceto o id, e omitir profissão e telefone do usuário,
-incluir todas as informações da acomodações que possuem diárias com precos menores ou igual a 100,00 e que 
-estão na paraíba */ 
+incluir todas as informações da acomodações que possuem diárias com precos menores ou igual 
+a 100,00 e que estão na paraíba */
 db.reserva.aggregate([
     {
         $lookup:
@@ -84,8 +109,6 @@ db.reserva.aggregate([
     },
 ])
 
-/* 01 outra consulta a seu critério, dentro do contexto da aplicação 
+/* 01 outra consulta a seu critério, dentro do contexto da aplicação
 Enunciado: 
 */
-
-

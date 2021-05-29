@@ -11,7 +11,7 @@ db.reserva.insertMany([
                     "(83) 98834-0022",
                     "(83) 92244-1133"
                 ],
-                profissao:"Engenheiro de Software"
+                profissao:"Engenheiro(a) de Software"
             }
         ],
         acomodacao: ObjectId("60aed62f0213426e9eff3a6b")
@@ -28,7 +28,7 @@ db.reserva.insertMany([
                     "020 8759 4321",
                     "0870 000 0123"
                 ],
-                profissao: "Cantora"
+                profissao: "Cantor(a)"
             }
         ], 
         acomodacao: ObjectId("60aed62f0213426e9eff3a6e")
@@ -81,7 +81,7 @@ db.reserva.insertMany([
                     "(83) 99999-0000",
                     "(83) 95554-2222"
                 ],
-                profissao: "Engenheira de Software"
+                profissao: "Engenheiro(a) de Software"
             }
         ],
         acomodacao: ObjectId("60aed62f0213426e9eff3a6f")
@@ -99,7 +99,7 @@ db.reserva.insertMany([
                     "(81) 99999-0000",
                     "(83) 97777-3333"
                 ],
-                profissao: "Escritora"
+                profissao: "Escritor(a)"
             }
         ],
         acomodacao: ObjectId("60aed62f0213426e9eff3a70")
@@ -116,7 +116,7 @@ db.reserva.insertMany([
                     "(11) 99999-0000",
                     "(84) 96666-7777"
                 ],
-                profissao: "Professor"
+                profissao: "Professor(a)"
             }
         ],
         acomodacao: ObjectId("60aed62f0213426e9eff3a71")
@@ -133,7 +133,7 @@ db.reserva.insertMany([
                     "(31) 99999-3335",
                     "(84) 96666-8888"
                 ],
-                profissao: "Escritora"
+                profissao: "Escritor(a)"
             }
         ],
         acomodacao: ObjectId("60aed62f0213426e9eff3a72")
