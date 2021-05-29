@@ -99,7 +99,7 @@ db.reserva.insertMany([
                     "(81) 99999-0000",
                     "(83) 97777-3333"
                 ],
-                profissao: "Astronauta"
+                profissao: "Escritora"
             }
         ],
         acomodacao: ObjectId("60aed62f0213426e9eff3a70")
@@ -120,6 +120,23 @@ db.reserva.insertMany([
             }
         ],
         acomodacao: ObjectId("60aed62f0213426e9eff3a71")
+    },
+    {
+        entrada: new Date("2021-12-04"),
+        saida: new Date("2021-12-14"),
+        preco: 400.00,
+        usuario: [
+            {
+                nome: "Aline Valek",
+                email: "valek@mail.com",
+                telefone: [
+                    "(31) 99999-3335",
+                    "(84) 96666-8888"
+                ],
+                profissao: "Escritora"
+            }
+        ],
+        acomodacao: ObjectId("60aed62f0213426e9eff3a72")
     }
 ])
 
