@@ -29,6 +29,18 @@ db.acomodacao.count({})
 
 /* 01 consulta com filtro, projeção e uso de expressão regular 
 Enunciado: */
+db.acomodacao.find({
+    nome:
+     {
+      $regex: /Hotel/
+     }
+     },
+     {
+         _id:0,
+         nome:1,
+         descricao:1,
+         diaria:1
+     })
 
 /* 02 consultas com acesso a array de elementos */
 
