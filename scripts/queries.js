@@ -65,7 +65,16 @@ db.reserva.aggregate([
 
 /* 02 consultas com acesso a estrutura embutida */
 
-// Enunciado:
+// Enunciado: Acha o cep de uma acomodação acessando endereço.cep (estrutura embutida)
+db.acomodacao.find({
+    "endereco.cep":"58000-222"
+    },
+    {
+        nome:1, 
+        "endereco.rua":1,
+        descricao:1, 
+        diaria:1
+    })
 
 // Enunciado:
 
