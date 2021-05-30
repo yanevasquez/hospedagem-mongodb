@@ -25,7 +25,10 @@ db.reserva.find({ "entrada": { $gte: ISODate("2021-06-01T00:00:00.000+0000"), $l
 
 /* 02 consultas com filtros diversos e com projeção */
 
-// Enunciado:
+/*Enunciado: Consultar acomodações que estejam disponíveis na cidade de João Pessoa tendo diária menores 
+que 200,00 reais, exibir o nome, descrição e diária */
+db.acomodacao.find({ "endereco.cidade": "João Pessoa", "status": "D", "diaria": {$lt: 200.00}},
+    { _id: 0, nome: 1, descricao: 1, diaria: 1 })
 
 // Enunciado:
 
@@ -153,5 +156,5 @@ db.reserva.aggregate([
 ])
 
 /* 01 outra consulta a seu critério, dentro do contexto da aplicação
-Enunciado: 
+Enunciado:
 */
