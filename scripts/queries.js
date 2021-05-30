@@ -33,18 +33,45 @@ db.reserva.find({ "entrada": { $gte: ISODate("2021-06-01T00:00:00.000+0000"), $l
 // Enunciado: Acha os hoteis exigindo apenas nome descrição e preço da diária
 db.acomodacao.find({
     nome:
-     {
-      $regex: /Hotel/
-     }
-     },
-     {
-         _id:0,
-         nome:1,
-         descricao:1,
-         diaria:1
-     })
+    {
+        $regex: /Hotel/
+    }
+},
+    {
+        _id: 0,
+        nome: 1,
+        descricao: 1,
+        diaria: 1
+    })
 
 /* 02 consultas com acesso a array de elementos */
+
+// Enunciado: Retorna o nome dos clientes e o primeiro número telefone omitindo o id da reserva
+db.reserva.aggregate([
+    { $unwind: "$usuario" },
+    {
+        $project: {
+            _id: 0,
+            Nome_do_cliente: "$usuario.nome",
+            primeiroTelefone: { $arrayElemAt: ["$usuario.telefone", 0] },
+        }
+    }
+]);
+
+// Enunciado:
+
+/* 02 consultas com acesso a estrutura embutida */
+
+// Enunciado: Acha o cep de uma acomodação acessando endereço.cep (estrutura embutida)
+db.acomodacao.find({
+    "endereco.cep": "58000-222"
+},
+    {
+        nome: 1,
+        "endereco.rua": 1,
+        descricao: 1,
+        diaria: 1
+    })
 
 // Enunciado: Exibir os nomes, datas da reserva e preco de todos os hospedes que for escritor(a)
 db.reserva.aggregate([
@@ -59,24 +86,6 @@ db.reserva.aggregate([
         $project: { "_id": 0, "usuario.nome": 1, "preco": 1, "entrada": 1, "saida": 1 }
     }
 ]);
-
-
-// Enunciado:
-
-/* 02 consultas com acesso a estrutura embutida */
-
-// Enunciado: Acha o cep de uma acomodação acessando endereço.cep (estrutura embutida)
-db.acomodacao.find({
-    "endereco.cep":"58000-222"
-    },
-    {
-        nome:1, 
-        "endereco.rua":1,
-        descricao:1, 
-        diaria:1
-    })
-
-// Enunciado:
 
 /* 02 consultas diferentes com aggregate */
 
