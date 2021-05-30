@@ -30,7 +30,7 @@ db.reserva.find({ "entrada": { $gte: ISODate("2021-06-01T00:00:00.000+0000"), $l
 // Enunciado:
 
 /* 01 consulta com filtro, projeção e uso de expressão regular */
-// Enunciado: Acha os hoteis exigindo apenas nome descrição e preço da diária
+// Enunciado: Exibe apenas as acomodacoes que sejam hoteis e projeta o nome, descrição e preço da diária
 db.acomodacao.find({
     nome:
     {
@@ -73,7 +73,7 @@ db.acomodacao.find({
         diaria: 1
     })
 
-// Enunciado: Exibir os nomes, datas da reserva e preco de todos os hospedes que for escritor(a)
+// Enunciado: Exibir os nomes, datas da reserva e preco de todos os hospedes que forem escritores
 db.reserva.aggregate([
     { $unwind: "$usuario" },
     {
@@ -89,7 +89,7 @@ db.reserva.aggregate([
 
 /* 02 consultas diferentes com aggregate */
 
-// Enunciado: Exibir a média dos preços das diárias agrupadas por estado
+// Enunciado: Exibir a média de preços das diárias agrupadas por estado
 db.acomodacao.aggregate(
     [
         {
@@ -101,13 +101,26 @@ db.acomodacao.aggregate(
     ]
 );
 
-// Enunciado:
+// Enunciado: Exibir a quantidade de reservas por acomodacao e ordená-las em ordem decrescente
+db.reserva.aggregate([
+    {
+        $group: {
+            _id: "$acomodacao",
+            quantidade_reservas: { $sum: 1 }
+        }
+    },
+    {
+        $sort: {
+            quantidade_reservas: -1
+        }
+    }
+])
 
 /* 01 consulta com lookup 
 
-Enunciado: Exibir os dados da reserva exceto o id, e omitir profissão e telefone do usuário,
-incluir todas as informações da acomodações que possuem diárias com precos menores ou igual 
-a 100,00 e que estão na paraíba */
+Enunciado: Exibir os dados das reservas omitindo o id, profissão e telefone do usuário fazendo 
+a junção com as acomodacoess que possuam diárias com precos menores ou iguais a 100,00 
+e que estão na paraíba */
 db.reserva.aggregate([
     {
         $lookup:
