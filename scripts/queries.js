@@ -18,7 +18,8 @@ db.acomodacao.count({})
 
 /* 02 consultas com filtros diversos (IN, GT, etc), sem projeção */
 
-// Enunciado:
+// Enunciado: Acha as acomodações nos estados da PB e SP
+db.acomodacao.find( {"endereco.estado" : { $in: [ "PB", "SP" ] } } )
 
 // Enunciado: Exibir todas as informações das reservas feitas no mês de junho
 db.reserva.find({ "entrada": { $gte: ISODate("2021-06-01T00:00:00.000+0000"), $lt: ISODate("2021-06-31T00:00:00.000+0000") } })
