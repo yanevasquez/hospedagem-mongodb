@@ -62,7 +62,9 @@ db.reserva.aggregate([
     }
 ]);
 
-// Enunciado:
+// Enunciado: Acessa o array de telefone dos usuarios e procura pela espressao regular, e da o nome do cliente com aquele determinado telefone.
+db.reserva.find({"usuario.telefone": {$regex: /99924/}},
+    {"usuario.nome":1})
 
 /* 02 consultas com acesso a estrutura embutida */
 
