@@ -26,8 +26,7 @@ db.reserva.find({ "entrada": { $gte: ISODate("2021-06-01T00:00:00.000+0000"), $l
 
 /* 02 consultas com filtros diversos e com projeção */
 
-/*Enunciado: Consultar acomodações que estejam disponíveis na cidade de João Pessoa tendo diária menores 
-que 200,00 reais, exibir o nome, descrição e diária */
+/*Enunciado: Consultar acomodações que estejam disponíveis na cidade de João Pessoa tendo diária menores que 200,00 reais, exibir o nome, descrição e diária */
 db.acomodacao.find({ "endereco.cidade": "João Pessoa", "status": "D", "diaria": {$lt: 200.00}},
     { _id: 0, nome: 1, descricao: 1, diaria: 1 })
 
@@ -62,7 +61,7 @@ db.reserva.aggregate([
     }
 ]);
 
-// Enunciado: Acessa o array de telefone dos usuarios e procura pela espressao regular, e da o nome do cliente com aquele determinado telefone.
+// Enunciado: Acessa o array de telefone dos usuarios e procura pela expressao regular, e da o nome do cliente com aquele determinado telefone.
 db.reserva.find({"usuario.telefone": {$regex: /99924/}},
     {"usuario.nome":1})
 
@@ -124,9 +123,7 @@ db.reserva.aggregate([
 
 /* 01 consulta com lookup 
 
-Enunciado: Exibir os dados das reservas omitindo o id, profissão e telefone do usuário fazendo 
-a junção com as acomodacoess que possuam diárias com precos menores ou iguais a 100,00 
-e que estão na paraíba */
+Enunciado: Exibir os dados das reservas omitindo o id, profissão e telefone do usuário fazendo a junção com as acomodações que possuem diárias com preços menores ou iguais a 100,00  e que estão na paraíba */
 db.reserva.aggregate([
     {
         $lookup:
