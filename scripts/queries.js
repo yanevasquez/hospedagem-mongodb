@@ -3,6 +3,7 @@
 // i. Coleção(ões) de documentos: criar coleção(ões) conforme mapeamento realizado e decisões de projeto 
 
 // ii. 01 índice com apresentação de justificativa
+db.reserva.createIndex( { entrada: 1 } )
 
 /* ----------------------------------------------- ii. Consultas diversas ----------------------------------------- */
 
