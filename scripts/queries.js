@@ -31,7 +31,9 @@ db.reserva.find({ "entrada": { $gte: ISODate("2021-06-01T00:00:00.000+0000"), $l
 db.acomodacao.find({ "endereco.cidade": "João Pessoa", "status": "D", "diaria": {$lt: 200.00}},
     { _id: 0, nome: 1, descricao: 1, diaria: 1 })
 
-// Enunciado:
+// Enunciado: Acha um padrao de texto dentro de um email e a profissão e projeta o nome, entrada e saida (da reserva), e telefone.
+db.reserva.find({"usuario.email": {$regex:"mm"}, "usuario.profissao":/escritora/i},
+{"usuario.nome":1, entrada:1, saida:1, "usuario.telefone":1})
 
 /* 01 consulta com filtro, projeção e uso de expressão regular */
 // Enunciado: Exibe apenas as acomodacoes que sejam hoteis e projeta o nome, descrição e preço da diária
