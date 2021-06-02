@@ -32,7 +32,7 @@ db.acomodacao.find({ "endereco.cidade": "João Pessoa", "status": "D", "diaria":
     { _id: 0, nome: 1, descricao: 1, diaria: 1 })
 
 // Enunciado: Acha um padrao de texto dentro de um email e a profissão e projeta o nome, entrada e saida (da reserva), e telefone.
-db.reserva.find({"usuario.email": {$regex:"mm"}, "usuario.profissao":/escritora/i},
+db.reserva.find({"usuario.email": {$regex:"mm"}, "usuario.profissao":/escritor\(a)/i},
 {"usuario.nome":1, entrada:1, saida:1, "usuario.telefone":1})
 
 /* 01 consulta com filtro, projeção e uso de expressão regular */
