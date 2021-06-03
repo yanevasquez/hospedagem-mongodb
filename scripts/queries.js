@@ -159,5 +159,33 @@ db.reserva.aggregate([
 ])
 
 /* 01 outra consulta a seu critério, dentro do contexto da aplicação
-Enunciado:
+
+Enunciado: Retorna entrada, saida, preco da coleção reserva, e junta a coleção acomodacao importando o nome e o endereço referente a aquela reserva, 
+e com o unwind desconstroi o array retornado pela junção das tabelas
 */
+db.reserva.aggregate([
+{
+    $lookup:
+        {
+            from: "acomodacao",
+            localField: "acomodacao",
+            foreignField: "_id",
+            as: "Nome da acomodação"
+        }},
+{
+    $project:
+        {
+          _id:0,  
+          "Nome da acomodação.nome":1,
+          "Nome da acomodação.endereco":1,
+          entrada:1,
+          saida:1,
+          preco:1
+
+        }
+},
+{
+    $unwind: "$Nome da acomodação"
+}
+])
+
